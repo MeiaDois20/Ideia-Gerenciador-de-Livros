@@ -1,37 +1,61 @@
-const gerenciadorDeLivros = {
-    titulo: 'Divina Comédia',
-    autor: 'Dante Alighiere',
-    anoNascimento: 1304,
-    disponivel: true,
+function gerenciamentoDeLivros(titulo, autor, anoNascimento, disponivel) {
+    return {
+        
+        titulo: titulo,
+        autor: autor,
+        anoNascimento: anoNascimento,
+        disponivel: disponivel = true,
 
-    obterDetalhes() {
-        return `Titúlo: ${this.titulo}, Autor: ${this.autor}, 
-        Ano Nascimento: ${this.anoNascimento}, Disponibilidade: ${this.disponivel}`
-    },
+        obterDetalhes() {
+            return `INFORMAÇÕES DO LIVRO: 
+            Titúlo: ${this.titulo};
+            Autor: ${this.autor}, 
+            Ano Nascimento: ${this.anoNascimento};
+            Disponibilidade: ${this.disponibilidade1()}`
+        },
 
-    emprestarLivro() {
-        if (this.disponivel == true) {
-            this.disponivel = false
-            return `Estou emprestando o Livro.`
-        } else if (this.disponivel == false) {
-            return `O livro está emprestado!`
-        }
-    },
+        disponibilidade1() {
+            if (this.disponivel == true) {
+                return `Disponivel`
+            } else if(this.disponivel == false) {
+                return `Indísponivel`
+            }
+        },
 
-    devolverLivro() {
-        if (this.disponivel == false) {
-            this.disponivel = true
-            return `Estou devolvendo o livro.`
-        } else if (this.disponivel == true) {
-            return `O livro foi devolvido!`
+        emprestarLivro() {
+            if (this.disponivel == true) {
+                this.disponivel = false
+                return `           DISPONIBILIDADE:
+                Emprestado.`
+            } else if (this.disponivel == false) {
+                return `            ALERTA:
+                O livro ja foi emprestado!`
+            }
+        },
+
+        devolverLivro() {
+            if (this.disponivel == false) {
+                this.disponivel = true
+                return `            DISPONIBILIDADE:
+                Disponivel.`
+            } else if (this.disponivel == true) {
+                return `            ALERTA:
+                O livro ja está disponivel!`
+            }
         }
     }
 }
-// Emprestar Livro
+
+let gerenciadorDeLivros = gerenciamentoDeLivros('Divina Comédia: Inferno', 'Dante Aligheri', 1304)
+// Obtem os Detalhes do Livro
+console.log(gerenciadorDeLivros.obterDetalhes())
+
+// Emprestar o livro
 gerenciadorDeLivros.emprestarLivro()
+console.log(gerenciadorDeLivros.obterDetalhes())
 console.log(gerenciadorDeLivros.emprestarLivro())
-console.log(gerenciadorDeLivros.obterDetalhes())
-// Devolver Livro
+
+// Devolver o livro
 gerenciadorDeLivros.devolverLivro()
-console.log(gerenciadorDeLivros.devolverLivro())
 console.log(gerenciadorDeLivros.obterDetalhes())
+console.log(gerenciadorDeLivros.devolverLivro())
